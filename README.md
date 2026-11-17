@@ -26,7 +26,7 @@ The data formats are used by the following components of the *SUNRISE* framework
 - [**Integration Testbench**](https://github.com/boschresearch/sunrise.integration_testbench)
 
 It can be integrated into any Python-based project to easily align the data formats with the *SUNRISE* framework:
-- To use the Pydantic models, just import the *dataformats.py* file in your custom Python script.
+- Import the *dataformats* package in your custom Python script, e.g. `from dataformats import SysDef`.
 - The import strategy requires that the parent directory of the submodule is in `PYTHONPATH` and the directory name is *dataformats*. This limitation comes from the need to type check objects of the included classes with `isinstance()` which requires objects to have the exact module path to pass a type comparison.
 
 ## Result Formats

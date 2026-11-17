@@ -11,5 +11,5 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from .dataformats import *
+from .dataformats import *  # noqa: F403 -- re-exports only names listed in dataformats.__all__
 from . import resultformats

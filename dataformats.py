@@ -23,6 +23,27 @@ SYSCFG_DATAFORMAT_IDENTIFIER = 'syscfg:0.3'
 SYSDEF_DATAFORMAT_IDENTIFIER = 'sysdef:0.4'
 SESSIONINFO_DATAFORMAT_IDENTIFIER = 'sessioninfo:0.3'
 
+# public API of this module, excluding the internal format identifier constants above
+__all__ = [
+    "State",
+    "ParameterGroup",
+    "SysDefParameterEnum",
+    "SysDefParameterRange",
+    "SysDefParameterFile",
+    "SysDefCmplxParameter",
+    "SysDefResult",
+    "SysDefDoc",
+    "SysDef",
+    "SysCfgSystem",
+    "SysCfgUrlParameter",
+    "SysCfg",
+    "LogEntry",
+    "SessionInfo",
+    "ResultInfo",
+    "CreateSessionItem",
+    "UpdateParameterItem",
+]
+
 
 class State(str, enum.Enum):
     """Definition of states of a Session."""
