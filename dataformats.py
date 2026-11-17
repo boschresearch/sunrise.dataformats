@@ -43,7 +43,7 @@ class ParameterGroup(str, enum.Enum):
 
     def rootname(self) -> str:
         """Return the group name without trailing '_parameters'"""
-        return self.value.rstrip("_parameters")
+        return self.value.removesuffix("_parameters")
 
 
 class SysDefParameterEnum(pydantic.BaseModel):
@@ -127,6 +127,8 @@ class SysDef(pydantic.BaseModel):
     @pydantic.model_validator(mode='after')
     def check_result_enabled_by(self):
         """Check of the 'enabled_by' switch of the result objects during model validation."""
+        if not self.results:
+            return self
         for result in self.results.values():
             if result.enabled_by is not None:
                 for enabler in result.enabled_by:
