@@ -36,6 +36,16 @@ class Performance(pydantic.BaseModel):
     instructions: Optional[int] = None  # Number of executed instructions
     cycles: Optional[int] = None  # Number of required clock cycles
     frequency_hz: Optional[float] = None  # Core clock frequency, defines the cycle period
+    def get_ipc(self) -> Optional[float]:
+        """Calculate the instructions per cycle (IPC) if possible."""
+        if self.instructions is None or self.cycles is None or self.cycles <= 0:
+            return None
+        return self.instructions / self.cycles
+    def get_duration(self) -> Optional[float]:
+        """Calculate the execution duration in seconds if possible."""
+        if self.cycles is None or self.frequency_hz is None or self.frequency_hz <= 0:
+            return None
+        return self.cycles / self.frequency_hz
 
 
 class SimSpeed(pydantic.BaseModel):
@@ -79,7 +89,7 @@ class FunctionProfile:
 
     @classmethod
     def from_csv_file(cls, filepath: Union[str, os.PathLike]):
-        """Read the a CSV file and convert the data to a list of FunctionProfileData dictionaries"""
+        """Read a CSV file and convert the data to a list of FunctionProfileData dictionaries"""
         with open(filepath, 'r', encoding="utf-8") as csv_file:
             reader = csv.DictReader(csv_file)
             functions = []
