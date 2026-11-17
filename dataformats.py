@@ -69,7 +69,7 @@ class SysDefCmplxParameter(pydantic.BaseModel):
     description: Optional[str] = None
 
     def is_fileparam(self) -> bool:
-        """"return true if this object is a file parameter"""
+        """Return true if this object is a file parameter."""
         return isinstance(self.meta, SysDefParameterFile)
 
     @pydantic.model_validator(mode='after')
@@ -154,7 +154,7 @@ class SysDef(pydantic.BaseModel):
         return getattr(self, item)
 
     def __setitem__(self, item: str, value: Any) -> None:
-        """Make class indexable e.g. to writer parameter groups with name: my_sysdef["build_parameters"] = {...}"""
+        """Make class indexable e.g. to write parameter groups with name: my_sysdef["build_parameters"] = {...}"""
         return setattr(self, item, value)
 
 
@@ -183,7 +183,7 @@ class SysCfg(pydantic.BaseModel):
         return getattr(self, item)
 
     def __setitem__(self, item: str, value: Any) -> None:
-        """Make class indexable e.g. to writer parameter groups with name: my_syscfg["build_parameters"] = {...}"""
+        """Make class indexable e.g. to write parameter groups with name: my_syscfg["build_parameters"] = {...}"""
         return setattr(self, item, value)
 
     @classmethod
